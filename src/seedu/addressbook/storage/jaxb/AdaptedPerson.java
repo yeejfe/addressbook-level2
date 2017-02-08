@@ -52,7 +52,7 @@ public class AdaptedPerson {
 
         phone = new AdaptedContactDetail();
         phone.isPrivate = source.getPhone().isPrivate();
-        phone.value = source.getPhone().value;
+        phone.value = source.getPhone().number;
 
         email = new AdaptedContactDetail();
         email.isPrivate = source.getEmail().isPrivate();

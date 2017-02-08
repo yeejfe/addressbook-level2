@@ -12,7 +12,7 @@ public class Phone {
     public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
     public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
-    public final String value;
+    public final String number;
     private boolean isPrivate;
 
     /**
@@ -26,7 +26,7 @@ public class Phone {
         if (!isValidPhone(trimmedPhone)) {
             throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
         }
-        this.value = trimmedPhone;
+        this.number = trimmedPhone;
     }
 
     /**
@@ -38,19 +38,19 @@ public class Phone {
 
     @Override
     public String toString() {
-        return value;
+        return number;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Phone // instanceof handles nulls
-                && this.value.equals(((Phone) other).value)); // state check
+                && this.number.equals(((Phone) other).number)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return number.hashCode();
     }
 
     public boolean isPrivate() {

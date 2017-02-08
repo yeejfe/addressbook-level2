@@ -2,6 +2,10 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+/**
+ * Represents a Person's unit address in the address details
+ * Guarantees: immutable
+ */
 public class Unit {
     public static final String UNIT_VALIDATION_REGEX = "^(#\\d{2}-\\d{2})$";
     public static final String MESSAGE_UNIT_CONSTRAINTS = "Person addresses can be in any format";

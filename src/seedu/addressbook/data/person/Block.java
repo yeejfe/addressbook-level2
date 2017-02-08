@@ -1,5 +1,9 @@
 package seedu.addressbook.data.person;
 
+/**
+ * Represents a Person's block number in the address details
+ * Guarantees: immutable
+ */
 public class Block {
     private int num;
 
@@ -7,8 +11,13 @@ public class Block {
         this.setBlockNum(blockNum);
     }
     
-    public int getBlockNum() {
-        return num;
+    /**
+     * Convert block number to String object and return
+     * 
+     * @return String object of block number
+     */
+    public String getBlockNum() {
+        return Integer.toString(num);
     }
 
     private void setBlockNum(int blockNum) {
