@@ -17,15 +17,25 @@ import java.util.Scanner;
  */
 public class TextUi {
     private final Scanner in;
-    private Formatter formatter;
-
+    private final PrintStream out;
+    
     public TextUi() {
         this(System.in, System.out);
     }
 
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
-        this.formatter = new Formatter(out);
+        this.out = out  ;
+    }
+    
+    /** Shows message to the user */
+    public void showToUserNoNewLine(String message) {
+        out.println(Formatter.format(message));
+    }
+    
+    /** Shows message(s) to the user */
+    public void showToUser(String... message) {
+        out.println(Formatter.format(message));
     }
 
     /**
@@ -56,7 +66,7 @@ public class TextUi {
      * @return command (full line) entered by the user
      */
     public String getUserCommand() {
-        this.formatter.showToUserNoNewLine("Enter command: ");
+        this.showToUserNoNewLine("Enter command: ");
         String fullInputLine = in.nextLine();
 
         // silently consume all ignored lines
@@ -71,7 +81,7 @@ public class TextUi {
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        this.formatter.showToUser(
+        this.showToUser(
                 Formatter.DIVIDER,
                 Formatter.DIVIDER,
                 MESSAGE_WELCOME,
@@ -82,12 +92,12 @@ public class TextUi {
     }
 
     public void showGoodbyeMessage() {
-        this.formatter.showToUser(MESSAGE_GOODBYE, Formatter.DIVIDER, Formatter.DIVIDER);
+        this.showToUser(MESSAGE_GOODBYE, Formatter.DIVIDER, Formatter.DIVIDER);
     }
 
 
     public void showInitFailedMessage() {
-        this.formatter.showToUser(MESSAGE_INIT_FAILED, Formatter.DIVIDER, Formatter.DIVIDER);
+        this.showToUser(MESSAGE_INIT_FAILED, Formatter.DIVIDER, Formatter.DIVIDER);
     }
 
     /**
@@ -99,7 +109,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        this.formatter.showToUser(result.feedbackToUser, Formatter.DIVIDER);
+        this.showToUser(result.feedbackToUser, Formatter.DIVIDER);
     }
 
     /**
@@ -116,7 +126,7 @@ public class TextUi {
 
     /** Shows a list of strings to the user, formatted as an indexed list. */
     private void showToUserAsIndexedList(List<String> list) {
-        this.formatter.showToUser(getIndexedListForViewing(list));
+        this.showToUser(getIndexedListForViewing(list));
     }
 
     /** Formats a list of strings as a viewable indexed list. */
@@ -140,7 +150,7 @@ public class TextUi {
     }
 
     public void showToUser(String message) {
-        this.formatter.showToUser(message);        
+        this.showToUser(message);        
     }
 
 }

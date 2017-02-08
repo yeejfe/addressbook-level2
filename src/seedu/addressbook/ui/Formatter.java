@@ -1,12 +1,16 @@
 package seedu.addressbook.ui;
 
-import java.io.PrintStream;
-
+/**
+ * Represents the formatter used for text displayed to user
+ *
+ * Guarantees:
+ *  - String is formatted and returned according to methods called
+ * 
+ * @author Yee Eric
+ */
 public class Formatter {
-
     /** Format of indexed list item */
     protected static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-
 
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
@@ -22,22 +26,20 @@ public class Formatter {
 
     protected static final String DIVIDER = "===================================================";
     
-    private final PrintStream out;
-
-    
-    public Formatter(PrintStream out) {
-        this.out = out;
-    }
-
-    /** Shows message(s) to the user */
-    public void showToUserNoNewLine(String message) {
-        out.println(LINE_PREFIX + message);
+    /** format string */
+    public static String format(String toBeFormatString){
+        return Formatter.LINE_PREFIX + toBeFormatString;
     }
     
-    /** Shows message(s) to the user */
-    public void showToUser(String... message) {
-        for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
+    /** format string(s) */
+    public static String format(String... toBeFormatString){
+        String formattedString = null;
+        for (String fString : toBeFormatString){
+            formattedString = LINE_PREFIX + fString.replace("\n", LS + LINE_PREFIX);
         }
+        if(formattedString.equals(null))
+            throw new NullPointerException("Formating String cannot be null");
+        else
+            return formattedString;
     }
 }
